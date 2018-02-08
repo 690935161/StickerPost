@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Register</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/jquery.min.js"/>
+    <script type="text/javascript" src="js/bootstrap.min.js"/>
+    <script type="text/javascript" src="js/jquery.validate.min.js"/>
+    <script type="text/javascript">
+        $().ready(function () {
+            $("#registerForm").validate(
+                {
+                    errorElement: "p",
+                    errorClass: "text-danger",
+                    rules: {
+                        username: {
+                            required: true,
+                            remote: {
+                                url: "checkUserUsing",
+                                type: "post",
+                                data: {
+                                    username: function () {
+                                        return $("#username").val();
+                                    }
+                                }
+                            }
+                        },
+                        nickname: "required",
+                        password: "required",
+                        repeatPassword: {
+                            required: true,
+                            equalTo: "#password"
+                        },
+                        description: "required"
+                    },
+                    messages: {
+                        username: {
+                            required: "Required username",
+                            remote: "Username had been used"
+                        },
+                        nickname: "Required nickname",
+                        password: "Required password",
+                        repeatPassword: {
+                            required: "Required repeat password",
+                            equalTo: "Repeat password is not the same"
+                        },
+                        description: "Required description"
+                    }
+                }
+            )
+            ;
+            $("#username").focus();
+        })
+    </script>
+</head>
+<body>
+<div class="container">
+    <br/>
+    <div class="row">
+        <div class="col-xs-12 col-lg-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Register</h3>
+                </div>
+                <div class="panel-body">
+                    <form id="registerForm" method="post" action="/doRegister">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username" name="username"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="nickname">Nickname:</label>
+                            <input type="text" class="form-control" id="nickname" name="nickname"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="repeatPassword">RepeatPassword:</label>
+                            <input type="password" class="form-control" id="repeatPassword" name="repeatPassword"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"/>
+                        </div>
+                        <div class="row">
+                            <p class="col-xs-1"/>
+                            <input type="submit" class="btn btn-lg btn-success col-xs-4" value="Register"/>
+                            <p class="col-xs-2"/>
+                            <a type="button" class="btn btn-lg btn-primary col-xs-4" href="login">Login</a>
+                            <p class="col-xs-1"/>
+                        </div>
+                        <br/>
+                    </form>
+                    <p class="text-warning" id="error"/>
+                    <div th:text="${msg}" id="msg"></div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+
+        <ul class="list-group col-xs-12 col-lg-6">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

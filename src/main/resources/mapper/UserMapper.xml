@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hfly.springbootdemo.mapper.UserMapper">
+	<insert id="addUser">
+		INSERT test_user (
+			username,
+			PASSWORD,
+			nickname,
+			description
+		)
+		VALUES
+			(#{username},#{password},#{nickname},#{description})
+    </insert>
+	<select id="getUserByUsername" resultType="org.hfly.springbootdemo.entity.User">
+		SELECT
+			user_id,
+			username,
+			password,
+			nickname,
+			description
+		FROM
+			test_user
+		WHERE
+			username = #{username}
+	</select>
+	<select id="getUserById" resultType="org.hfly.springbootdemo.entity.User">
+		SELECT
+			user_id,
+			username,
+			password,
+			nickname,
+			description
+		FROM
+			test_user
+		WHERE
+			user_id = #{userId}
+	</select>
+	<select id="getAllUser" resultType="org.hfly.springbootdemo.entity.User">
+		SELECT
+			user_id,
+			username,
+			password,
+			nickname,
+			description
+		FROM
+			test_user
+	</select>
+	<update id="updateUser">
+		UPDATE test_user
+		SET
+			nickname = #{nickname},
+			password=#{password},
+			description=#{description}
+		WHERE
+			user_id = #{userID}
+	</update>
+</mapper>

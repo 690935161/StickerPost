@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<context id="test" targetRuntime="MyBatis3">
+		<!-- Toos -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+
+		<commentGenerator>
+			<!-- Date -->
+			<property name="suppressDate" value="true" />
+			<!-- Comments -->
+			<property name="suppressAllComments" value="false" />
+
+		</commentGenerator>
+		<!-- Database -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/test_spring?useSSL=true" userId="root" password="123456">
+
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<!-- This property is used to specify whether MyBatis Generator should force the use of java.math.BigDecimal for DECIMAL and NUMERIC fields, -->
+
+			<property name="forceBigDecimals" value="false" />
+
+		</javaTypeResolver>
+		<!-- Models -->
+
+		<javaModelGenerator targetPackage="org.hfly.springbootdemo.entity" targetProject="src/main/java">
+
+			<property name="enableSubPackages" value="true" />
+
+			<property name="trimStrings" value="true" />
+
+		</javaModelGenerator>
+		<!-- XML Mappers -->
+
+		<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+
+			<property name="enableSubPackages" value="true" />
+
+		</sqlMapGenerator>
+		<!-- Mappers -->
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="org.hfly.springbootdemo.mapper" targetProject="src/main/java">
+
+			<property name="enableSubPackages" value="true" />
+
+		</javaClientGenerator>
+
+		<!-- Tabes -->
+		<table tableName="test_user" domainObjectName="User" enableInsert="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"
+			enableSelectByExample="true" enableCountByExample="true"></table>
+		<table tableName="test_stick" domainObjectName="StickText" enableInsert="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"
+			enableSelectByExample="true" enableCountByExample="true"></table>
+	</context>
+
+</generatorConfiguration>
