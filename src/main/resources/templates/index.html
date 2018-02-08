@@ -22,8 +22,7 @@
     </script>
 </head>
 <body>
-
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
             <span class="sr-only">Dropdown</span>
@@ -42,13 +41,17 @@
     </div>
 </nav>
 <div class="container">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     <div class="row">
-        <div class="list-group col-xs-7">
+        <div class="list-group col-xs-12 col-lg-7">
             <ul th:each="sticker,stickerStat : ${stickers}">
                 <li class="list-group-item">
                     <div class="list-group-item-heading row">
-                        <h4 class="col-xs-8" th:text="${sticker.userNickname}">User nickname here</h4>
-                        <div class="col-xs-2 col-xs-offset-1">
+                        <h4 class="col-xs-7 col-md-8" th:text="${sticker.userNickname}">User nickname here</h4>
+                        <div class="col-xs-5 col-md-2 col-md-offset-1">
                             <br/>
                             <span class="label label-info " th:text="${#dates.format(sticker.postTime, 'yyyy-MM-dd HH:mm')}">2018-2-8 13:16</span>
                         </div>
@@ -63,7 +66,7 @@
                 </li>
             </ul>
         </div>
-        <div class="list-group col-xs-5">
+        <div class="list-group col-xs-10 col-xs-offset-1 col-lg-5  col-md-offset-0">
             <form id="postSticker" method="post" action="postSticker" onsubmit="return checkPost();">
                 <textarea class="form-control" id="postText" name="postText" rows="6"/>
                 <br/>

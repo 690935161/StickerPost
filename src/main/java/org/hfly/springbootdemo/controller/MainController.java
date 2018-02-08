@@ -81,8 +81,6 @@ public class MainController {
 	public String main(HttpServletRequest request, HttpSession session, @RequestParam(defaultValue = "0", required = false) Integer page) {
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
-			request.setAttribute("hello", "Login for User: " + user.getNickname());
-			request.setAttribute("desc", user.getDescription());
 			request.setAttribute("stickers", stickerService.getIndexStickerTextByTimeAndPage(page));
 			return "index";
 		}
