@@ -9,19 +9,16 @@
     <script type="text/javascript" src="js/bootstrap.min.js"/>
     <script type="text/javascript" src="js/jquery.validate.min.js"/>
     <script type="text/javascript">
-        $().ready(function () {
-            $("#postSticker").validate({
-                    errorElement: "p",
-                    errorClass: "text-danger",
-                    rules: {
-                        postSticker: "required",
-                    },
-                    messages: {
-                        postSticker: "Can not post empty sticker",
-                    }
-                }
-            );
-        });
+        function checkPost() {
+            if ($("#postText").val()=="") {
+                $("#msg").text("Can not post empty sticker");
+                setTimeout(function () {
+                    $("#msg").text("");
+                }, 4000);
+                return false;
+            }
+            return true;
+        }
     </script>
 </head>
 <body>
@@ -34,7 +31,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="" th:text="'Login Message for User: '+${session.user.nickname}"/>
+        <a class="navbar-brand" href="" th:text="'User: '+${session.user.nickname}"/>
     </div>
     <div class="collapse navbar-collapse" id="menu">
         <ul class="nav navbar-nav">
@@ -67,13 +64,13 @@
             </ul>
         </div>
         <div class="list-group col-xs-5">
-            <form id="postSticker" method="post" action="postSticker">
+            <form id="postSticker" method="post" action="postSticker" onsubmit="return checkPost();">
                 <textarea class="form-control" id="postText" name="postText" rows="6"/>
                 <br/>
                 <input class="btn btn-lg btn-primary" type="submit" value="Post"/>
             </form>
             <br/>
-            <div class="text-success" th:text="${msg}" id="msg"></div>
+            <p class="text-success" th:text="${msg}" id="msg"></p>
         </div>
     </div>
 </div>
