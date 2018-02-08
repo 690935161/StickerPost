@@ -41,7 +41,6 @@ public class StickerService {
 			List<User> users = userMapper.getAllUser();
 			PageHelper.startPage(page, 20);
 			PageInfo<Sticker> stickers = new PageInfo<Sticker>(stickerMapper.getStickerByTime());
-			stickers.getList().forEach(a -> System.out.println(a));
 			return stickers.getList();
 		} catch (Exception e) {
 			e.printStackTrace();
