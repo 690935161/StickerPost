@@ -2,18 +2,18 @@ spring:
   profiles:
     active: dev
   datasource:
-      url: jdbc:mysql://127.0.0.1:3306/test_spring?useUnicode=true&characterEncoding=utf-8&useSSL=false&useAffectedRows=true
+      url: jdbc:mysql://127.0.0.1:3306/test_spring?useUnicode=true&characterEncoding=utf-8&useSSL=true&useAffectedRows=true
       username: root
-      password: 123456
+      password: 1234567
       driver-class-name: com.mysql.jdbc.Driver
       type: org.apache.commons.dbcp2.BasicDataSource
   thymeleaf:
-    mode: HTML5
+    mode: HTML
     encoding: UTF-8
     content-type: text/html
     cache: false
 mybatis:
-  type-aliases-package: org.hfly.entity
+  type-aliases-package: org.hfly.springbootdemo.entity
   mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
